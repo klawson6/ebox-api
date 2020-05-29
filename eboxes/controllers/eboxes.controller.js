@@ -9,16 +9,18 @@ exports.insert = (req, res) => {
 };
 
 exports.list = (req, res) => {
-    let limit = req.query.limit && req.query.limit <= 100 ? parseInt(req.query.limit) : 10;
-    let page = 0;
-    if (req.query) {
-        if (req.query.page) {
-            req.query.page = parseInt(req.query.page);
-            page = Number.isInteger(req.query.page) ? req.query.page : 0;
-        }
-    }
-    EboxesModel.list(limit, page)
+    // let limit = req.query.limit && req.query.limit <= 100 ? parseInt(req.query.limit) : 10;
+    // let page = 0;
+    // if (req.query) {
+    //     if (req.query.page) {
+    //         req.query.page = parseInt(req.query.page);
+    //         page = Number.isInteger(req.query.page) ? req.query.page : 0;
+    //     }
+    // }
+    EboxesModel.list()
         .then((result) => {
+            res.header('Access-Control-Expose-Headers', 'X-Total-Count');
+            res.set('X-Total-Count', 10);
             res.status(200).send(result);
         })
 };

@@ -23,7 +23,7 @@ exports.findByLatlng = (coord) => {
 };
 
 exports.findByImei = (imei) => {
-    return Ebox.find({imei: imei})
+    return Ebox.find({_id: imei})
         .then((result) => {
             return result;
         })
@@ -34,15 +34,13 @@ exports.findByImei = (imei) => {
 };
 
 exports.createEbox = (eboxData) => {
-    const ebox = new Ebox(eboxData);
+    const ebox = new Ebox({...eboxData, timestamp: new Date()});
     return ebox.save();
 };
 
 exports.list = (perPage, page) => {
     return new Promise((resolve, reject) => {
         Ebox.find()
-            .limit(perPage)
-            .skip(perPage * page)
             .exec(function (err, eboxes) {
                 if (err) {
                     reject(err);
