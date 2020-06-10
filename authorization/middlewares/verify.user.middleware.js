@@ -3,7 +3,7 @@ const crypto = require('crypto');
 
 exports.hasAuthValidFields = (req, res, next) => {
     let errors = [];
-
+    console.log(req.body);
     if (req.body) {
         if (!req.body.email) {
             errors.push('Missing email field');
@@ -31,6 +31,8 @@ exports.isPasswordAndUserMatch = (req, res, next) => {
                 let passwordFields = user[0].password.split('$');
                 let salt = passwordFields[0];
                 let hash = crypto.createHmac('sha512', salt).update(req.body.password).digest("base64");
+                console.log(hash);
+                console.log(passwordFields[1]);
                 if (hash === passwordFields[1]) {
                     req.body = {
                         userId: user[0]._id,

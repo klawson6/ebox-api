@@ -9,6 +9,7 @@ const FREE = config.permissionLevels.NORMAL_USER;
 
 exports.routesConfig = function (app) {
     app.post('/users', [
+        UsersController.hasUserValidFields,
         UsersController.insert
     ]);
     app.get('/users', [

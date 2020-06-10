@@ -1,6 +1,33 @@
 const UserModel = require('../models/users.model');
 const crypto = require('crypto');
 
+exports.hasUserValidFields = (req, res, next) => {
+    let errors = [];
+    console.log(req.body);
+    if (req.body) {
+        if (!req.body.firstName) {
+            errors.push('Missing first name field');
+        }
+        if (!req.body.lastName) {
+            errors.push('Missing surname field');
+        }
+        if (!req.body.email) {
+            errors.push('Missing email field');
+        }
+        if (!req.body.password) {
+            errors.push('Missing password field');
+        }
+
+        if (errors.length) {
+            return res.status(400).send({errors: errors.join(',')});
+        } else {
+            return next();
+        }
+    } else {
+        return res.status(400).send({errors: 'Missing required field(s)'});
+    }
+};
+
 exports.insert = (req, res) => {
     let salt = crypto.randomBytes(16).toString('base64');
     let hash = crypto.createHmac('sha512', salt).update(req.body.password).digest("base64");
