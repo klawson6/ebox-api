@@ -12,7 +12,11 @@ exports.login = (req, res) => {
         let token = jwt.sign(req.body, jwtSecret);
         let b = new Buffer.from(hash);
         let refresh_token = b.toString('base64');
+        // setTimeout(() =>{
+        //     res.status(201).send({accessToken: token, refreshToken: refresh_token});
+        // }, 3000);
         res.status(201).send({accessToken: token, refreshToken: refresh_token});
+
     } catch (err) {
         res.status(500).send({errors: err});
     }

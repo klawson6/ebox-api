@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken'),
     crypto = require('crypto');
 
 exports.verifyRefreshBodyField = (req, res, next) => {
-    if (req.body && req.body.refresh_token) {
+    if (req.body && req.body.refreshToken) {
         return next();
     } else {
         return res.status(400).send({error: 'need to pass refresh_token field'});
@@ -11,7 +11,7 @@ exports.verifyRefreshBodyField = (req, res, next) => {
 };
 
 exports.validRefreshNeeded = (req, res, next) => {
-    let b = new Buffer(req.body.refresh_token, 'base64');
+    let b = new Buffer(req.body.refreshToken, 'base64');
     let refresh_token = b.toString();
     let hash = crypto.createHmac('sha512', req.jwt.refreshKey).update(req.jwt.userId + secret).digest("base64");
     if (hash === refresh_token) {
@@ -31,6 +31,9 @@ exports.validJWTNeeded = (req, res, next) => {
                 return res.status(401).send();
             } else {
                 req.jwt = jwt.verify(authorization[1], secret);
+                console.log("AIGHT");
+                console.log(req.jwt);
+                console.log("AIGH2");
                 return next();
             }
 

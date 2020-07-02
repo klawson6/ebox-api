@@ -23,9 +23,13 @@ exports.findByLatlng = (coord) => {
 };
 
 exports.findByImei = (imei) => {
-    return Ebox.find({_id: imei})
+    return Ebox.find({imei: imei})
         .then((result) => {
-            return result;
+            console.log(result);
+            if (result)
+                return result[0];
+            else
+                return null;
         })
         .catch((err) => {
             console.log(err);
@@ -34,7 +38,14 @@ exports.findByImei = (imei) => {
 };
 
 exports.createEbox = (eboxData) => {
-    const ebox = new Ebox({...eboxData, timestamp: new Date()});
+    const ebox = new Ebox({
+        ...eboxData,
+        // Command field is called command on the front end for code readability, however it has ot be reassigned to pending as it must first be issued to the ebox
+        pending: eboxData.command,
+        command: 1,
+        balance: 15000,
+        timestamp: new Date()
+    });
     return ebox.save();
 };
 
