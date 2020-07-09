@@ -3,10 +3,23 @@ const UserModel = require('../../users/models/users.model');
 const crypto = require('crypto');
 
 exports.insert = (req, res) => {
-    EboxesModel.createEbox(req.body)
+    EboxesModel.findByImei(req.body.imei)
         .then((result) => {
-            res.status(201).send(result);
+            if (result) {
+                res.status(400).send();
+            } else {
+                EboxesModel.createEbox(req.body)
+                    .then((result) => {
+                        // console.log(req.jwt);
+                        // console.log(req.body);
+                        UserModel.addEboxToUser(req.jwt.userId, req.body.imei)
+                            .then(result => {
+                                res.status(201).send(result);
+                            });
+                    });
+            }
         });
+
 };
 
 exports.list = (req, res) => {
@@ -18,33 +31,37 @@ exports.list = (req, res) => {
     //         page = Number.isInteger(req.query.page) ? req.query.page : 0;
     //     }
     // }
-    console.log(req.jwt);
+    // console.log(req.jwt);
     let eboxRequests = [];
     try {
         UserModel.findById(req.jwt.userId)
             .then((user) => {
-                if (user.devices){
+                if (user.devices) {
                     user.devices.forEach(d => {
-                        console.log(d);
+                        // console.log(d);
                         eboxRequests.push(EboxesModel.findByImei(d));
                     });
                     Promise.all(eboxRequests)
                         .then(eboxes => {
-                            console.log("WORKED");
-                            console.log(eboxes);
-                            res.status(200).send(eboxes);
+                            // console.log("WORKED");
+                            // console.log(eboxes);
+                            // setTimeout(() => {
+                            res.status(200).send(eboxes)
+                            // }, 3000);
                         })
                 } else {
+                    // setTimeout(() => {
                     res.status(200).send([]);
+                    // }, 3000);
                 }
             })
-            .catch((err) =>{
-                console.log(err);
+            .catch((err) => {
+                // console.log(err);
                 res.status(500).send(err);
             });
-        console.log(req.jwt);
+        // console.log(req.jwt);
     } catch (e) {
-        console.log(e);
+        // console.log(e);
         res.status(500).send(e);
     }
     // EboxesModel.list()
@@ -69,9 +86,29 @@ exports.patchByImei = (req, res) => {
 
 };
 
+exports.removeManyByImei = (req, res) => {
+    let completed = [];
+    req.body.eboxes.forEach(e => {
+        // console.log('removing: ', e);
+        completed.push(EboxesModel.removeByImei(e));
+        // console.log(req.jwt.userId);
+    });
+    completed.push(UserModel.removeEboxesFromUser(req.jwt, req.body.eboxes));
+    // TODO Remove device data too when data is implemented
+    Promise.all(completed)
+        .then(() => {
+            console.log('removed all');
+            res.status(200).send();
+        })
+        .catch(errors => {
+            console.log(errors);
+            res.status(500).send({errors});
+        });
+};
+
 exports.removeByImei = (req, res) => {
     EboxesModel.removeByImei(req.params.imei)
-        .then((result) => {
+        .then(() => {
             res.status(204).send({});
         });
 };

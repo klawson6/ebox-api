@@ -30,7 +30,12 @@ exports.routesConfig = function (app) {
     ]);
     app.delete('/eboxes/:imei', [
         ValidationMiddleware.validJWTNeeded,
-        PermissionMiddleware.minimumPermissionLevelRequired(ADMIN),
+        PermissionMiddleware.minimumPermissionLevelRequired(FREE),
         EboxesController.removeByImei
+    ]);
+    app.delete('/eboxes', [
+        ValidationMiddleware.validJWTNeeded,
+        PermissionMiddleware.minimumPermissionLevelRequired(FREE),
+        EboxesController.removeManyByImei
     ]);
 };

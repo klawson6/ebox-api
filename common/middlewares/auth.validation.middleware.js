@@ -11,7 +11,7 @@ exports.verifyRefreshBodyField = (req, res, next) => {
 };
 
 exports.validRefreshNeeded = (req, res, next) => {
-    let b = new Buffer(req.body.refreshToken, 'base64');
+    let b = new Buffer.from(req.body.refreshToken, 'base64');
     let refresh_token = b.toString();
     let hash = crypto.createHmac('sha512', req.jwt.refreshKey).update(req.jwt.userId + secret).digest("base64");
     if (hash === refresh_token) {
@@ -31,9 +31,9 @@ exports.validJWTNeeded = (req, res, next) => {
                 return res.status(401).send();
             } else {
                 req.jwt = jwt.verify(authorization[1], secret);
-                console.log("AIGHT");
-                console.log(req.jwt);
-                console.log("AIGH2");
+                // console.log("AIGHT");
+                // console.log(req.jwt);
+                // console.log("AIGH2");
                 return next();
             }
 

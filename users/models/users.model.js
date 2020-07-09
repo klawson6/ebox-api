@@ -59,6 +59,34 @@ exports.list = (perPage, page) => {
     });
 };
 
+exports.addEboxToUser = (id, imei) => {
+    return new Promise((resolve, reject) => {
+        User.findById(id, function (err, user) {
+            if (err) reject(err);
+            user.devices.push(imei);
+            resolve(user.save());
+        });
+    });
+
+};
+
+exports.removeEboxesFromUser = (jwt, eboxes) => {
+    return new Promise((resolve, reject) => {
+        User.findById(jwt.userId, function (err, user) {
+            // console.log(user);
+            if (err) reject(err);
+            // console.log("Before:" + user.devices.filter(d => !eboxes.includes(d)));
+            user.devices = user.devices.filter(d => !eboxes.includes(d));
+            // console.log("After:" + user.devices);
+
+            // console.log(user.devices);
+            //user.devices.push("HELLOOO");
+            resolve(user.save());
+        });
+    });
+
+};
+
 exports.patchUser = (id, userData) => {
     return new Promise((resolve, reject) => {
         User.findById(id, function (err, user) {

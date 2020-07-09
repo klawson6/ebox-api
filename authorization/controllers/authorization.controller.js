@@ -11,6 +11,7 @@ exports.login = (req, res) => {
         req.body.refreshKey = salt;
         let token = jwt.sign(req.body, jwtSecret);
         let b = new Buffer.from(hash);
+        // let b = new Buffer.alloc(hash);
         let refresh_token = b.toString('base64');
         // setTimeout(() =>{
         //     res.status(201).send({accessToken: token, refreshToken: refresh_token});

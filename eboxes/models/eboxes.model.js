@@ -25,7 +25,7 @@ exports.findByLatlng = (coord) => {
 exports.findByImei = (imei) => {
     return Ebox.find({imei: imei})
         .then((result) => {
-            console.log(result);
+            // console.log(result);
             if (result)
                 return result[0];
             else
@@ -79,20 +79,20 @@ exports.patchEbox = (imei, eboxData) => {
                 }
             })
             .catch(err => {
-                console.log(err);
+                // console.log(err);
                 reject(err);
             });
     })
 
 };
 
-exports.removeByImei = (userImei) => {
+exports.removeByImei = (imei) => {
     return new Promise((resolve, reject) => {
-        Ebox.remove({imei: userImei}, (err) => {
+        Ebox.deleteMany({imei: imei}, (err) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(err);
+                resolve();
             }
         });
     });

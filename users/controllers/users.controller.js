@@ -3,7 +3,7 @@ const crypto = require('crypto');
 
 exports.hasUserValidFields = (req, res, next) => {
     let errors = [];
-    console.log(req.body);
+    // console.log(req.body);
     if (req.body) {
         if (!req.body.firstName) {
             errors.push('Missing first name field');
