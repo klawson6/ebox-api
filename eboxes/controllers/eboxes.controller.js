@@ -80,10 +80,12 @@ exports.getByImei = (req, res) => {
 };
 exports.patchByImei = (req, res) => {
     EboxesModel.patchEbox(req.params.imei, req.body)
-        .then((result) => {
-            res.status(204).send({});
-        });
-
+        .then(() => {
+            res.status(204).send();
+        })
+        .catch((err) =>{
+            res.status(500).send(err);
+        })
 };
 
 exports.removeManyByImei = (req, res) => {

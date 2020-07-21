@@ -67,8 +67,12 @@ exports.patchEbox = (imei, eboxData) => {
         Ebox.find({imei: imei})
             .then(ebox => {
                 if (Array.isArray(ebox) && ebox.length === 1) {
-                    for (let i in eboxData) {
-                        ebox[0][i] = eboxData[i];
+                    let newEbox = {
+                        ...ebox[0],
+                        ...eboxData
+                    };
+                    for (let i in newEbox) {
+                        ebox[0][i] = newEbox[i];
                     }
                     ebox[0].save(function (err, updatedEbox) {
                         if (err) return reject(err);
