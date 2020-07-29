@@ -8,6 +8,7 @@ const eboxSchema = new Schema({
     command: Number,
     pending: Number,
     timestamp: Date,
+    data: Array,
     balance: Number
 });
 
@@ -44,7 +45,8 @@ exports.createEbox = (eboxData) => {
         pending: eboxData.command,
         command: 1,
         balance: 15000,
-        timestamp: new Date()
+        timestamp: new Date(),
+        data: []
     });
     return ebox.save();
 };
