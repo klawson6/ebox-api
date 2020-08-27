@@ -15,7 +15,7 @@ const options = {
 };
 const connectWithRetry = () => {
     console.log('MongoDB connection with retry');
-    mongoose.connect("mongodb://localhost:27017/ebox-management", options).then(()=>{
+    mongoose.connect("mongodb://ebox:CS99Rwanda*@127.0.0.1:27017/ebox-management", options).then(()=>{
         console.log('MongoDB is connected')
     }).catch(err=>{
         console.log('MongoDB connection unsuccessful, retry after 5 seconds. ', ++count);
