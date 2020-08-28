@@ -14,8 +14,6 @@ exports.routesConfig = function (app) {
         EboxesController.insert
     ]);
     app.post('/eboxes/data', [
-        ValidationMiddleware.validJWTNeeded,
-        PermissionMiddleware.minimumPermissionLevelRequired(FREE),
         EboxesController.insertData
     ]);
     app.get('/eboxes', [
@@ -29,8 +27,6 @@ exports.routesConfig = function (app) {
         EboxesController.getByImei
     ]);
     app.get('/eboxes/command/:imei', [
-        ValidationMiddleware.validJWTNeeded,
-        PermissionMiddleware.minimumPermissionLevelRequired(FREE),
         EboxesController.getCommandByImei
     ]);
     app.patch('/eboxes/:imei', [
