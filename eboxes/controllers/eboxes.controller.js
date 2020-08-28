@@ -22,6 +22,26 @@ exports.insert = (req, res) => {
 
 };
 
+exports.insertData = (req, res) => {
+    EboxesModel.findByImei(req.body.imei)
+        .then((result) => {
+            if (result) {
+                EboxesModel.addData(req.body)
+                    .then(result => {
+                        res.status(201).send();
+                    })
+                    .catch(err => {
+                        res.status(200).send();
+                    });
+                    // If the ebox doesn't exist, that is fine
+                    // The ebox has been used before activation on the database and user's account, so ditch it and let the ebox carry on.
+            } else {
+                res.status(200).send();
+            }
+        });
+
+};
+
 exports.list = (req, res) => {
     // let limit = req.query.limit && req.query.limit <= 100 ? parseInt(req.query.limit) : 10;
     // let page = 0;
@@ -78,12 +98,24 @@ exports.getByImei = (req, res) => {
             res.status(200).send(result);
         });
 };
+
+exports.getCommandByImei = (req, res) => {
+    EboxesModel.getCommandByImei(req.params.imei)
+        .then((result) => {
+            res.status(200).send(result.toString());
+        })
+        .catch((err) =>{
+            console.log(err);
+            res.status(200).send(1);
+        })
+};
+
 exports.patchByImei = (req, res) => {
     EboxesModel.patchEbox(req.params.imei, req.body)
         .then(() => {
             res.status(204).send();
         })
-        .catch((err) =>{
+        .catch((err) => {
             res.status(500).send(err);
         })
 };

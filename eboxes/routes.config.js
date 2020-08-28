@@ -13,6 +13,11 @@ exports.routesConfig = function (app) {
         PermissionMiddleware.minimumPermissionLevelRequired(FREE),
         EboxesController.insert
     ]);
+    app.post('/eboxes/data', [
+        ValidationMiddleware.validJWTNeeded,
+        PermissionMiddleware.minimumPermissionLevelRequired(FREE),
+        EboxesController.insertData
+    ]);
     app.get('/eboxes', [
         ValidationMiddleware.validJWTNeeded,
         PermissionMiddleware.minimumPermissionLevelRequired(FREE),
@@ -22,6 +27,11 @@ exports.routesConfig = function (app) {
         ValidationMiddleware.validJWTNeeded,
         PermissionMiddleware.minimumPermissionLevelRequired(FREE),
         EboxesController.getByImei
+    ]);
+    app.get('/eboxes/command/:imei', [
+        ValidationMiddleware.validJWTNeeded,
+        PermissionMiddleware.minimumPermissionLevelRequired(FREE),
+        EboxesController.getCommandByImei
     ]);
     app.patch('/eboxes/:imei', [
         ValidationMiddleware.validJWTNeeded,

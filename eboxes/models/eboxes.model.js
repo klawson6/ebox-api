@@ -38,6 +38,27 @@ exports.findByImei = (imei) => {
         });
 };
 
+exports.getCommandByImei = (imei) => {
+    return new Promise((resolve, reject) => {
+        Ebox.find({imei: imei})
+            .then((ebox) => {
+                if (Array.isArray(ebox) && ebox.length === 1) {
+                    ebox[0].command = ebox[0].pending;
+                    ebox[0].save(function (err, updatedEbox) {
+                        if (err) resolve(1);
+                        //console.log(ebox[0].command);
+                        resolve(ebox[0].command);
+                    });
+                } else
+                    resolve(1); // Default let the ebox carry on
+            })
+            .catch((err) => {
+                console.log(err);
+                reject(1); // Default let the ebox carry on
+            });
+    });
+};
+
 exports.createEbox = (eboxData) => {
     const ebox = new Ebox({
         ...eboxData,
@@ -90,6 +111,39 @@ exports.patchEbox = (imei, eboxData) => {
             });
     })
 
+};
+
+exports.addData = (body) => {
+    return new Promise((resolve, reject) => {
+        Ebox.find({imei: body.imei})
+            .then(ebox => {
+                if (Array.isArray(ebox) && ebox.length === 1) {
+                    let timestamp = new Date();
+                    timestamp.setMinutes(timestamp.getMinutes() - 10);
+                    for (let i = 0; i < 10; i++) {
+                        timestamp.setMinutes(timestamp.getMinutes() + 1);
+                        ebox[0].data.push({
+                            DateTime: timestamp.toJSON(),
+                            BatteryVoltage: body.BatteryVoltage[i],
+                            PowerImport: body.PowerImport[i],
+                            PowerExport: body.PowerExport[i],
+                            DistributionVoltage: body.DistributionVoltage[i],
+                            LoadBusbar: body.LoadBusbar[i]
+                        })
+                    }
+                    ebox[0].save(function (err, updatedEbox) {
+                        if (err) return reject(err);
+                        resolve(updatedEbox);
+                    });
+                } else {
+                    reject("Multiple documents with the IMEI number: " + imei);
+                }
+            })
+            .catch(err => {
+                // console.log(err);
+                reject(err);
+            });
+    });
 };
 
 exports.removeByImei = (imei) => {
