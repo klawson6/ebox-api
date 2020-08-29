@@ -23,7 +23,7 @@ exports.insert = (req, res) => {
 };
 
 exports.insertData = (req, res) => {
-    EboxesModel.findByImei(req.body.imei)
+    EboxesModel.findByImei(req.body.IMEI)
         .then((result) => {
             if (result) {
                 EboxesModel.addData(req.body)

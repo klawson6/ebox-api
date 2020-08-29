@@ -115,7 +115,7 @@ exports.patchEbox = (imei, eboxData) => {
 
 exports.addData = (body) => {
     return new Promise((resolve, reject) => {
-        Ebox.find({imei: body.imei})
+        Ebox.find({imei: body.IMEI})
             .then(ebox => {
                 if (Array.isArray(ebox) && ebox.length === 1) {
                     let timestamp = new Date();
