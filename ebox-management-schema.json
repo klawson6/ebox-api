@@ -1,0 +1,280 @@
+{
+  "fields": [
+    {
+      "name": "_id",
+      "path": "_id",
+      "count": 9,
+      "types": [
+        {
+          "name": "ObjectID",
+          "bsonType": "ObjectID",
+          "path": "_id",
+          "count": 9,
+          "values": [
+            "5ef4d040c94eb70d54d8c277",
+            "5f22e391a6f2534c53526529",
+            "5f22e3c0a6f2534c5352652a",
+            "5f22e4b0a6f2534c5352652b",
+            "5f22e4f7a6f2534c5352652c",
+            "5f22e598a6f2534c5352652d",
+            "5f22e5f7a6f2534c5352652e",
+            "5f47a721f0ddb0077cf8fe33",
+            "5f47cadf30c7b50c72710cda"
+          ],
+          "total_count": 0,
+          "probability": 1,
+          "unique": 9,
+          "has_duplicates": false
+        }
+      ],
+      "total_count": 9,
+      "type": "ObjectID",
+      "has_duplicates": false,
+      "probability": 1
+    },
+    {
+      "name": "__v",
+      "path": "__v",
+      "count": 9,
+      "types": [
+        {
+          "name": "Int32",
+          "bsonType": "Int32",
+          "path": "__v",
+          "count": 9,
+          "values": [
+            87,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_count": 0,
+          "probability": 1,
+          "unique": 2,
+          "has_duplicates": true
+        }
+      ],
+      "total_count": 9,
+      "type": "Int32",
+      "has_duplicates": true,
+      "probability": 1
+    },
+    {
+      "name": "devices",
+      "path": "devices",
+      "count": 9,
+      "types": [
+        {
+          "name": "Array",
+          "bsonType": "Array",
+          "path": "devices",
+          "count": 9,
+          "types": [
+            {
+              "name": "String",
+              "bsonType": "String",
+              "path": "devices",
+              "count": 6,
+              "values": [
+                "867858035837296",
+                "867858035861502",
+                "867858035829061",
+                "867858035818940",
+                "864764032118339",
+                "9384765783746782912875"
+              ],
+              "total_count": 0,
+              "probability": 1,
+              "unique": 6,
+              "has_duplicates": false
+            }
+          ],
+          "lengths": [
+            6,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_count": 6,
+          "probability": 1,
+          "average_length": 0.6666666666666666
+        }
+      ],
+      "total_count": 9,
+      "type": "Array",
+      "has_duplicates": false,
+      "probability": 1
+    },
+    {
+      "name": "email",
+      "path": "email",
+      "count": 9,
+      "types": [
+        {
+          "name": "String",
+          "bsonType": "String",
+          "path": "email",
+          "count": 9,
+          "values": [
+            "kylelawson6@yahoo.com",
+            "kylelawson62@yaboo.com",
+            "kylelawosn63@yahoo.com",
+            "hi@hello.com",
+            "kylelawosn64@yahoo.com",
+            "blah@blahh.com",
+            "zoelawson6@yahoo.com",
+            "kylelawson6@yahoo.com",
+            "kylelawson6@yahoo.com"
+          ],
+          "total_count": 0,
+          "probability": 1,
+          "unique": 7,
+          "has_duplicates": true
+        }
+      ],
+      "total_count": 9,
+      "type": "String",
+      "has_duplicates": true,
+      "probability": 1
+    },
+    {
+      "name": "firstName",
+      "path": "firstName",
+      "count": 9,
+      "types": [
+        {
+          "name": "String",
+          "bsonType": "String",
+          "path": "firstName",
+          "count": 9,
+          "values": [
+            "Kyle",
+            "Kyle2",
+            "Kyle3",
+            "Hi",
+            "Kyle4",
+            "blah",
+            "zoe",
+            "Kyle",
+            "Kyle"
+          ],
+          "total_count": 0,
+          "probability": 1,
+          "unique": 7,
+          "has_duplicates": true
+        }
+      ],
+      "total_count": 9,
+      "type": "String",
+      "has_duplicates": true,
+      "probability": 1
+    },
+    {
+      "name": "lastName",
+      "path": "lastName",
+      "count": 9,
+      "types": [
+        {
+          "name": "String",
+          "bsonType": "String",
+          "path": "lastName",
+          "count": 9,
+          "values": [
+            "Lawson",
+            "Lawson2",
+            "Lawson3",
+            "Hello",
+            "Lawson4",
+            "blahh",
+            "lawson",
+            "Lawson",
+            "Lawson"
+          ],
+          "total_count": 0,
+          "probability": 1,
+          "unique": 7,
+          "has_duplicates": true
+        }
+      ],
+      "total_count": 9,
+      "type": "String",
+      "has_duplicates": true,
+      "probability": 1
+    },
+    {
+      "name": "password",
+      "path": "password",
+      "count": 9,
+      "types": [
+        {
+          "name": "String",
+          "bsonType": "String",
+          "path": "password",
+          "count": 9,
+          "values": [
+            "WJH3zZz4csO1N5B2a0KpVQ==$qRLdZgmKQePouHCa7t7kg960p3Gk0UxEQyOmTfkiPKWnYKzF7SwfjrwwJIs3DDJteoyfiY/HG2m5xfVo75mtPg==",
+            "S6fw6riejNnGPhkQsUfbJA==$yOV26RHjtFnlb2deN0umGSxc7JVUBBa2MuwSUTlq+O2rZiw0pH8t+wtQDHA3zl5sohuXHR8x9LC1VRUQNMSmiw==",
+            "cPcrbLjbZAeG/NcnM9i6xg==$tUDZjtcBC/KM+m1bSqb1NgQ1nZWTluF4NKy6tRmi8Qnx2dxaRhEtn0X/aZTCAiwKbYfUNZPATGC0zeHaQie3cw==",
+            "17msZYcNSCk7ixmxR/FVVw==$PyxhxOieiRp/4uBQKLAc3FBkVIH4eH3klFnZENdwloWOyGqgD44wdlVkgcGk7YbpTzXpkoFuSnEPKFvfghFaGg==",
+            "SYZA+7vWpm0E+MDsyezQ5Q==$i4yHR60Jt0wERKB4E5KvRz8ySeNFwGNe1XsytiN2RQMHxP/HKmAwVIRxqcKWmog59lcUCU7YaHuJwKaRnhIYmA==",
+            "wwdRg0tnz97Q7B4ayWMZoA==$3L3owvpIqV5oB5977tjgmmJkX/GchUjmMqiiwyQ8k00pGOLfKZDfFIXC3E9p0NRkvOr+pNUQ9vf0nvK/vbqw5w==",
+            "+mVu0S/PzKToxIpeqjDciw==$kUALWRgd5MFgyZu1aPrHZrFDKkrExBgAqgmmuDJLNYD8cJbwJgcfKOkBXUS6UT/wsN2fkIZup7zDL/m28yoSmw==",
+            "Nd7WWwyl5859qNPWggPK4Q==$apUa2tNvuQ2FNntlYAqRAVEPFqgYfLVy0KgbL055SAYmzQ8OPffi7W//yr3C4SNTskHoT5zIzKpr7Lhm0BBUGQ==",
+            "VeAm6evRJi5CDPbFhIryeA==$Cg3QqPVz+kgaVYo3gyb+vi5TT6n0o4tAMw6o2X+QpgBCZKnol1wfFLuwbmh+EL7U1TjK7T4uOiguFrNYMBSGHg=="
+          ],
+          "total_count": 0,
+          "probability": 1,
+          "unique": 9,
+          "has_duplicates": false
+        }
+      ],
+      "total_count": 9,
+      "type": "String",
+      "has_duplicates": false,
+      "probability": 1
+    },
+    {
+      "name": "permissionLevel",
+      "path": "permissionLevel",
+      "count": 9,
+      "types": [
+        {
+          "name": "Int32",
+          "bsonType": "Int32",
+          "path": "permissionLevel",
+          "count": 9,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "total_count": 0,
+          "probability": 1,
+          "unique": 1,
+          "has_duplicates": true
+        }
+      ],
+      "total_count": 9,
+      "type": "Int32",
+      "has_duplicates": true,
+      "probability": 1
+    }
+  ],
+  "count": 9
+}
